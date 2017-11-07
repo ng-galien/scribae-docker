@@ -1,7 +1,10 @@
 # Image Docker pour SCRIBAE
 
-Vous pouvez utitliser cette image Docker pour tester localement votre site SCRIBAE sur votre ordinateur.
->Docker permet de virtualiser des micro-système Linux
+>Cet article n'est destiné aux personnes chevronnées en informatique, pour eux la doc est [ici]() sur le wiki de SCRIBAE.
+
+Vous pouvez utitliser cette image Docker pour avoir votre site SCRIBAE sur votre ordinateur. Vous pourrez ensuite le publier au monde entier.
+
+>Docker est un logicile qui permet de simuler des micro-système Linux sur votre ordinateur
 
 ## Téléchager Docker
 
@@ -19,11 +22,13 @@ Si vous ne connaissez rien à l'informatique Kinematic est là pour faciliter la
 
 * Installation de Scribae
 
+Dans la fenêtre principale de Kitematic cliquer sur le bouton "+ NEW"
+
 * Configuration des paramètres
 
 * Premier démarrage
 
 ## Utiliser la console pour créer du contenu
 
-## Enregistrer son site dsur GitHub
+## Enregistrer son site sur GitHub
 
