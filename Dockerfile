@@ -50,7 +50,11 @@ ENV LANG en_US.UTF-8
 
 RUN ["mkdir", "-p", "/usr/lib/scribae-data/"]
 
+VOLUME ["/usr/lib/scribae-data/"]
+
 RUN ["chmod", "+x", "./entry-point.sh"]
+
+RUN printf 'alias scribae="( cd /usr/lib/scribae-data/$SCRIBAE_PROJECT && ruby util/console.rb )"' >> ~/.bashrc
 
 ENTRYPOINT [ "./entry-point.sh" ]
 

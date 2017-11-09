@@ -38,23 +38,93 @@ Si vous ne connaissez rien à l'informatique Kinematic est là pour faciliter la
 
 ![scribae-docker](https://user-images.githubusercontent.com/33391039/32513426-78e3f736-c3fa-11e7-8b78-5c443911e1b7.jpeg)
 
-### Par où commencer?
 
-* Installation de Scribae
+## Installation de Scribae
 
-Dans la fenêtre principale de Kitematic cliquer sur le bouton "+ NEW"
+* Ourir le logiciel *Kitematic*.
+
+>Si vous utilisez Docker pour la première fois entrer **scribae** dans la zone de recherche, sinon
+cliquer sur le bouton "+ NEW" en haut à gauche
+
+* Appuyer sur le bouton **create**
+
+
+Pour aller plus loin [installer l'image manuellement](#en-ligne-de-commande)
 
 * Configuration des paramètres
 
 * Premier démarrage
 
+Après quelques minutes vous obtiendrez une image comme ceci
+
+
+
+## En ligne de commande
+
+````Shell
+#Pour copier l'image dans le dossier courant
+git clone 
+#Contruire l'image
+docker build -t scribae .
+#Lancer l'image 
+docker run  --name monsite  -p 8080:8080 -v ~/scribae-data/docker/:/usr/lib/scribae-data/ scribae
+````
+
+le nom est 'monsite' après l'option --name
+l'option -v indique que les fichier du site seront visibles 
+
+````Shell
+docker run  --name monsite  -p 8080:8080 -v ~/scribae-data/docker/:/usr/lib/scribae-data/ scribae
+````
+
+Lancer le terminal dans kinematic
+
+Taper ensuite la commande **scribae**
+
+````Shell
+root@494b8783758a:/# scribae
+````
+Et voilà vous y êtes!
+
+````Shell
+================================================================
+   _____    _____   _____    _____   ____               ______   
+  / ____|  / ____| |  __ \  |_   _| |  _ \      /\     |  ____| 
+ | (___   | |      | |__) |   | |   | |_) |    /  \    | |__    
+  \___ \  | |      |  _  /    | |   |  _ <    / /\ \   |  __|   
+  ____) | | |____  | | \ \   _| |_  | |_) |  / ____ \  | |____  
+ |_____/   \_____| |_|  \_\ |_____| |____/  /_/    \_\ |______|
+
+  Votre site internet... parce qu'il le vaut bien^^ 
+=================================================================
+Que voulez vous faire? (astuce: aide)
+````
+
+Vous pouvez taper **aide** pour débuter
+
+`````
+----------------------------
+Aide de la ligne de commande
+----------------------------
+
+fin >> quitter la console
+aide >> affiche l'aide
+init >> initialise le site
+    options --force pour écraser les fichiers déjà crées
+
+creer >> pour créer une publication
+
+    suivi de article >> pour un article
+              sujet >> pour un sujet
+              section >> pour une section de la narration
+              album >> pour une section de la narration
+
+    options --force >> pour écraser les fichiers déjà crées
+            --exemple >> exemple prédéfini
+----------------------------
+Que voulez vous faire? (astuce: aide)
+`````
+
 ## Utiliser la console pour créer du contenu
 
 ## Enregistrer son site sur GitHub
-
-## Utiliser l'image
-
-docker build -t scribae .
-
-docker build -t scribae .
-

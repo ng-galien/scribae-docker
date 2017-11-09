@@ -45,28 +45,34 @@ fi
 
 # AVERTISSEMENTS
 
+warm=false
+
 if [ -z $SCRIBAE_URL ]
 then
     echo -e "$emagenta SCRIBAE_URL est vide!"
     echo -e "$emagenta Vous ne pourrez pas mettre le projet en ligne!"
+    warm=true
 fi
 
 if [ -z $SCRIBAE_BASEURL ]
 then
     echo -e "$emagenta SCRIBAE_BASEURL est vide!"
     echo -e "$emagenta Vous ne pourrez pas mettre le projet en ligne!"
+    warm=true
 fi
 
 if [ -z $SCRIBAE_GH_USER ]
 then
     echo -e "$emagenta SCRIBAE_GH_USER est vide!"
     echo -e "$emagenta Vous ne pourrez pas mettre le projet en ligne!"
+    warm=true
 fi
 
 if [ -z $SCRIBAE_GH_REPO ]
 then
-    echo -e "$emagenta SCRIBAE_BASEURL est vide!"
+    echo -e "$emagenta SCRIBAE_GH_REPO est vide!"
     echo -e "$emagenta Vous ne pourrez pas mettre le projet en ligne!"
+    warm=true
 fi
 
 # COMMENCEMENT
@@ -107,7 +113,7 @@ else
     ruby util/console.rb --no-interactive --verbeux init
 fi
 
-alias scribae='( cd "/usr/lib/scribae-data/$SCRIBAE_PROJECT" && ruby util/console.rb )'
+#echo alias scribae='( cd /usr/lib/scribae-data/$SCRIBAE_PROJECT ; ruby util/console.rb )' >> ~/.bashrc
 
 echo -e "$yellow Lancement du serveur"
 
