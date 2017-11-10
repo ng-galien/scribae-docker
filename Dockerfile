@@ -10,51 +10,65 @@ RUN apt-get update && apt-get install -y git \
 #ARGS
 ENV DEBIAN_FRONTEND noninteractive
 
-ARG SCRIBAE_PROJECT=scribae
-ENV SCRIBAE_PROJECT=${SCRIBAE_PROJECT}
+ENV DATA_DIR="/usr/lib/scribae-data/"
 
-ARG SCRIBAE_HOST=0.0.0.0
-ENV SCRIBAE_HOST=${SCRIBAE_HOST}
+ARG SCRIBAE_PROJET="site-scribae"
+ENV SCRIBAE_PROJET=${SCRIBAE_PROJET}
 
-ARG SCRIBAE_PORT=8080
+ARG SCRIBAE_IP="0.0.0.0"
+ENV SCRIBAE_IP=${SCRIBAE_IP}
+
+ARG SCRIBAE_PORT="8080"
 ENV SCRIBAE_PORT=${SCRIBAE_PORT}
 
-ARG SCRIBAE_SRC=https://github.com/ng-galien/scribae.git
-ENV SCRIBAE_SRC=${SCRIBAE_SRC}
+ARG SCRIBAE_SOURCE=https://github.com/ng-galien/scribae.git
+ENV SCRIBAE_SOURCE=${SCRIBAE_SOURCE}
 
-ARG SCRIBAE_URL=
-ENV SCRIBAE_URL=${SCRIBAE_URL}
+ARG SCRIBAE_SITE=
+ENV SCRIBAE_SITE=${SCRIBAE_SITE}
 
-ARG SCRIBAE_BASEURL=
-ENV SCRIBAE_BASEURL=${SCRIBAE_BASEURL}
+ARG SCRIBAE_UTILISATEUR_GITHUB=
+ENV SCRIBAE_UTILISATEUR_GITHUB=${UTILISATEUR_GITHUB}
 
-ARG SCRIBAE_GH_USER=
-ENV SCRIBAE_GH_USER=${SCRIBAE_GH_USER}
+ARG SCRIBAE_DEPOT_GITHUB=
+ENV SCRIBAE_DEPOT_GITHUB=${SCRIBAE_DEPOT_GITHUB}
 
-ARG SCRIBAE_GH_REPO=
-ENV SCRIBAE_GH_REPO=${SCRIBAE_GH_REPO}
+ENV SCRIBAE_ADMIN="ADMINISTRATEUR"
+ENV SCRIBAE_CONTRIB="CONTRIBUTEUR"
+#Type de contribution
+#Proprietaire pour un site propre
+#Contributeur pour un site tierce
+ARG SCRIBAE_TYPE=${SCRIBAE_ADMIN}
+ENV SCRIBAE_TYPE=${SCRIBAE_TYPE}
 
-ENV SCRIBAE_GH_PWD=""
+ARG SCRIBAE_VOLUME=
+ENV SCRIBAE_VOLUME=${SCRIBAE_VOLUME}
 
+COPY ./scribae.sh /
 COPY ./entry-point.sh /
 
-
 # Set the locale
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales
+#RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales
 
-RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-    dpkg-reconfigure --frontend=noninteractive locales && \
-    update-locale LANG=en_US.UTF-8
-
-ENV LANG en_US.UTF-8
+#RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+#    dpkg-reconfigure --frontend=noninteractive locales && \
+#    update-locale LANG=en_US.UTF-8
+#
+#ENV LANG en_US.UTF-8
 
 RUN ["mkdir", "-p", "/usr/lib/scribae-data/"]
 
 VOLUME ["/usr/lib/scribae-data/"]
 
+RUN ["chmod", "+x", "./scribae.sh"]
 RUN ["chmod", "+x", "./entry-point.sh"]
 
-RUN printf 'alias scribae="( cd /usr/lib/scribae-data/$SCRIBAE_PROJECT && ruby util/console.rb )"' >> ~/.bashrc
+RUN printf 'alias scribae="( cd /usr/lib/scribae-data/$SCRIBAE_PROJET && ruby util/console.rb )"' >> ~/.bashrc
+RUN printf 'alias install="( cd /usr/lib/scribae-data/$SCRIBAE_PROJET && ruby util/install.rb )"' >> ~/.bashrc
+
+RUN ["gem", "install", "rainbow"]
+RUN ["gem", "install", "git"]
+
 
 ENTRYPOINT [ "./entry-point.sh" ]
 

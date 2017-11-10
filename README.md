@@ -82,7 +82,7 @@ Lancer le terminal dans kinematic
 Taper ensuite la commande **scribae**
 
 ````Shell
-root@494b8783758a:/# scribae
+root@abcdef1234567890:/# scribae
 ````
 Et voilà vous y êtes!
 
