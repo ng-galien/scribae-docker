@@ -15,12 +15,6 @@ ENV DATA_DIR="/usr/lib/scribae-data/"
 ARG SCRIBAE_PROJET="site-scribae"
 ENV SCRIBAE_PROJET=${SCRIBAE_PROJET}
 
-ARG SCRIBAE_IP="0.0.0.0"
-ENV SCRIBAE_IP=${SCRIBAE_IP}
-
-ARG SCRIBAE_PORT="8080"
-ENV SCRIBAE_PORT=${SCRIBAE_PORT}
-
 ARG SCRIBAE_SOURCE=https://github.com/ng-galien/scribae.git
 ENV SCRIBAE_SOURCE=${SCRIBAE_SOURCE}
 
@@ -48,13 +42,12 @@ COPY ./scribae.sh /
 COPY ./entry-point.sh /
 
 # Set the locale
-#RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y locales
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    dpkg-reconfigure --frontend=noninteractive locales && \
+    update-locale LANG=en_US.UTF-8
 
-#RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-#    dpkg-reconfigure --frontend=noninteractive locales && \
-#    update-locale LANG=en_US.UTF-8
-#
-#ENV LANG en_US.UTF-8
+ENV LANG en_US.UTF-8
 
 RUN ["mkdir", "-p", "/usr/lib/scribae-data/"]
 
@@ -72,4 +65,4 @@ RUN ["gem", "install", "git"]
 
 ENTRYPOINT [ "./entry-point.sh" ]
 
-EXPOSE 8080
+EXPOSE 80

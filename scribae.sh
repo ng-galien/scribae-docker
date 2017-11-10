@@ -7,21 +7,6 @@ require 'uri'
 require 'bundler/setup'
 require 'bundler'
 
-DATA_DIR                    ="DATA_DIR"
-SCRIBAE_PROJET              ="SCRIBAE_PROJET"            
-SCRIBAE_IP                  ="SCRIBAE_IP"                
-SCRIBAE_PORT                ="SCRIBAE_PORT"              
-
-SCRIBAE_SOURCE              ="SCRIBAE_SOURCE"            
-SCRIBAE_SITE                ="SCRIBAE_SITE"              
-SCRIBAE_UTILISATEUR_GITHUB  ="SCRIBAE_UTILISATEUR_GITHUB"
-SCRIBAE_DEPOT_GITHUB        ="SCRIBAE_DEPOT_GITHUB"      
-
-SCRIBAE_ADMIN               ="SCRIBAE_ADMIN"             
-SCRIBAE_CONTRIB             ="SCRIBAE_CONTRIB"           
-SCRIBAE_TYPE                ="SCRIBAE_TYPE"              
-SCRIBAE_VOLUME              ="SCRIBAE_VOLUME"            
-
 
 
 def log(string = nil)
@@ -150,16 +135,20 @@ def check_config()
         prod['url'] = 'http://'+uri.host
         prod['baseurl'] = uri.path
     end
+    
     File.open('_config.yml','w') do |h| 
         h.write prod.to_yaml
     end
     #dev
+    
     dev = YAML.load_file('_config_dev.yml')
-    dev['future'] = true
-    dev['local'] = true
-    dev['incremental'] = true
+    dev['url'] = ""
+    dev['baseurl'] = ""
+    dev.store('future' ,true)
+    dev.store('local' ,true)
+    dev.store('incremental', true)
     File.open('_config_dev.yml','w') do |h| 
-    h.write prod.to_yaml
+    h.write dev.to_yaml
     end
 end
 

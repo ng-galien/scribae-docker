@@ -74,7 +74,7 @@ le nom est 'monsite' après l'option --name
 l'option -v indique que les fichier du site seront visibles 
 
 ````Shell
-docker run  --name monsite  -p 8080:8080 -v ~/scribae-data/docker/:/usr/lib/scribae-data/ scribae
+docker run --name scribae -p 8080:4000 -v ~/scribae-data/docker/:/usr/lib/scribae-data/ scribae
 ````
 
 Lancer le terminal dans kinematic

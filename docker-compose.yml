@@ -13,8 +13,6 @@ services:
       context: ./
       args:
         SCRIBAE_PROJECT: "scribae"
-        SCRIBAE_HOST: "0.0.0.0"
-        SCRIBAE_PORT: 8080
         SCRIBAE_SRC: https://github.com/ng-galien/scribae.git
         SCRIBAE_URL: 
         SCRIBAE_BASEURL: 
