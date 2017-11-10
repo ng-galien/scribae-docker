@@ -39,8 +39,10 @@ def generate_files()
             Dir::mkdir(dir, 0777)
         end  
     end
-    #assets
-    Dir.chdir(File.join(proj_dir, 'assets'))
+    #image assets
+    asset_img = File.join(proj_dir, 'assets', 'img')
+    Dir::mkdir(asset_img, 0777)
+    Dir.chdir(asset_img)
     dirs = ['home','post', 'task', 'story', 'albums', 'map']
     dirs.each do |dir|
         if !Dir.exist?(dir)
@@ -146,7 +148,7 @@ def check_config()
     dev['baseurl'] = ""
     dev.store('future' ,true)
     dev.store('local' ,true)
-    dev.store('incremental', true)
+    #dev.store('incremental', true)
     File.open('_config_dev.yml','w') do |h| 
     h.write dev.to_yaml
     end

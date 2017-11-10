@@ -1,6 +1,6 @@
 # Image Docker pour SCRIBAE
 
->Cet article n'est destiné aux personnes chevronnées en informatique, pour eux la doc est [ici]() sur le wiki de SCRIBAE.
+>Cet article n'est destiné aux personnes chevronnées en informatique, pour eux la doc est [ici](https://hub.docker.com/r/nggalien/scribae/) sur Dockerhub.
 
 Vous pouvez utitliser cette image Docker pour avoir votre site SCRIBAE sur votre ordinateur, vous pourrez ensuite le publier pour le monde entier.
 Ainsi, il est possible de rédiger le contenu, modifier l'apparence et tester directement le résultat sans passer par internet.
